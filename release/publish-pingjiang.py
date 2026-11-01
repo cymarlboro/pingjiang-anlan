@@ -50,6 +50,13 @@ def publish():
   remote=request(API+'/user/repos','POST',{'name':'pingjiang-anlan','description':'平江安澜 · 水利工程概论 Android / Windows 独立复习软件','private':False,'auto_init':False,'has_issues':True});assert remote['full_name']==REPO
  elif not state.get('pushPermission'):raise RuntimeError('Repository push permission unavailable')
  prior=request(API+'/repos/'+REPO+'/releases/tags/'+TAG,missing=True)
+ # GitHub drafts can lack a resolvable tag until publication. Reuse our receipt.
+ receipt=REL/f'publication-{NAME}-draft.json'
+ if prior is None and receipt.exists():
+  saved=json.loads(receipt.read_text(encoding='utf-8'))
+  assert saved['tag']==TAG
+  prior=request(API+'/repos/'+REPO+'/releases/'+str(saved['id']))
+  assert prior['tag_name']==TAG
  if prior and not prior['draft']:raise RuntimeError('Version already published; never overwrite published assets')
  git('add','--','.')
  if git('diff','--cached','--name-only'):git('commit','-m','release: 平江安澜 '+NAME+' 独立水利工程概论双端版')
