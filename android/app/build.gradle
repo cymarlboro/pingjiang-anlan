@@ -1,0 +1,157 @@
+import java.util.Locale
+import org.gradle.api.tasks.Sync
+
+plugins {
+    id "com.android.application"
+}
+
+def signingVariableNames = ["SCJ_KEYSTORE", "SCJ_STOREPASS", "SCJ_KEYPASS", "SCJ_ALIAS"]
+def missingSigningVariables = signingVariableNames.findAll { name -> !System.getenv(name) }
+def hasReleaseSigning = missingSigningVariables.isEmpty()
+def requestedReleaseTask = gradle.startParameter.taskNames.any { name ->
+    name.toLowerCase(Locale.ROOT).contains("release")
+}
+if (requestedReleaseTask && !hasReleaseSigning) {
+    throw new GradleException(
+        "Release signing is not configured. Set the environment variables: " +
+        missingSigningVariables.join(", ") + ". No signing values are read from source files."
+    )
+}
+
+android {
+    namespace "cn.pingjianganlan.study"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "cn.pingjianganlan.study"
+        minSdk 26
+        targetSdk 35
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode providers.gradleProperty("scjVersionCode").getOrElse("1").toInteger()
+        versionName providers.gradleProperty("scjVersionName").getOrElse("1.0.0")
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            release {
+                storeFile file(System.getenv("SCJ_KEYSTORE"))
+                storePassword System.getenv("SCJ_STOREPASS")
+                keyAlias System.getenv("SCJ_ALIAS")
+                keyPassword System.getenv("SCJ_KEYPASS")
+                v1SigningEnabled true
+                v2SigningEnabled true
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    testBuildType "release"
+
+    buildFeatures {
+        buildConfig false
+    }
+
+    packaging {
+        resources {
+            excludes += [
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/ASL2.0",
+                "META-INF/INDEX.LIST"
+            ]
+        }
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")
+    implementation "androidx.webkit:webkit:1.12.1"
+    implementation "androidx.core:core:1.15.0"
+    implementation "com.tom-roush:pdfbox-android:2.0.27.0"
+    implementation "com.google.mlkit:text-recognition-chinese:16.0.1"
+
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test:runner:1.6.2"
+    androidTestImplementation "androidx.test.ext:junit:1.2.1"
+}
+
+def previewDirectory = rootProject.file("../preview")
+def copiedWebAssets = file("src/main/assets/www")
+
+tasks.withType(org.gradle.api.tasks.compile.JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+tasks.register("syncPreviewAssets", Sync) {
+    group = "build"
+    description = "Copy ../preview into app assets so each build uses the current UI."
+    from(previewDirectory)
+    into(copiedWebAssets)
+    doFirst {
+        if (!previewDirectory.isDirectory()) {
+            throw new GradleException("Preview directory not found: " + previewDirectory)
+        }
+    }
+}
+
+tasks.configureEach { task ->
+    if (task.name == "preBuild" ||
+        (task.name.startsWith("merge") && task.name.endsWith("Assets"))) {
+        task.dependsOn("syncPreviewAssets")
+    }
+}
+
+tasks.register("verifyReleaseSigning") {
+    group = "verification"
+    description = "Fails release builds when signing environment variables are absent."
+    doLast {
+        def absent = signingVariableNames.findAll { name -> !System.getenv(name) }
+        if (!absent.isEmpty()) {
+            throw new GradleException(
+                "Release signing is not configured. Set the environment variables: " +
+                absent.join(", ") + ". Values are never written to the project or logs."
+            )
+        }
+        def keystorePath = System.getenv("SCJ_KEYSTORE")
+        if (keystorePath == null || !new File(keystorePath).isFile()) {
+            throw new GradleException(
+                "Release signing keystore file was not found. Check SCJ_KEYSTORE."
+            )
+        }
+    }
+}
+
+tasks.configureEach { task ->
+    if (task.name != "verifyReleaseSigning" &&
+        task.name.toLowerCase(Locale.ROOT).contains("release")) {
+        task.dependsOn("verifyReleaseSigning")
+    }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "pingjiang-anlan-desktop",
+  "productName": "平江安澜",
+  "version": "1.0.0",
+  "private": true,
+  "description": "平江安澜 · 水利工程概论 Windows 学习软件",
+  "author": "PingjiangAnlan",
+  "license": "UNLICENSED",
+  "main": "src/main/main.cjs",
+  "engines": {
+    "node": ">=22.3.0"
+  },
+  "scripts": {
+    "copy:preview": "node scripts/copy-preview.mjs",
+    "start": "npm run copy:preview && electron .",
+    "pack": "npm run copy:preview && electron-builder --win dir --x64",
+    "dist": "npm run copy:preview && electron-builder --win nsis --x64",
+    "check": "node scripts/check-syntax.cjs",
+    "test": "node scripts/check-syntax.cjs && node scripts/run-tests.cjs"
+  },
+  "dependencies": {
+    "mammoth": "1.13.0",
+    "pdf-parse": "2.4.5"
+  },
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "cn.pingjianganlan.study.desktop",
+    "productName": "平江安澜",
+    "artifactName": "pingjianganlan-${version}-windows-x64-setup.${ext}",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build-resources"
+    },
+    "files": [
+      "src/**/*",
+      "build/renderer/**/*",
+      "package.json",
+      "!**/*.map",
+      "!**/test/**",
+      "!**/scripts/**"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "npmRebuild": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "executableName": "PingjiangAnlan",
+      "icon": "build-resources/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "artifactName": "pingjianganlan-${version}-windows-x64-setup.${ext}",
+      "shortcutName": "平江安澜"
+    }
+  }
+}

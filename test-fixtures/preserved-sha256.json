@@ -1,0 +1,9 @@
+{
+  "preview/memory-scheduler.js": "9729cd79068b5e577542e2b825fe3841b5aa712d0799dfafa6349a2e7906fd96",
+  "preview/question-type-support.js": "42644eb738e93789f1e47a6db4ce6ab5edd4a2bb323a725ed9558a55fdd0509f",
+  "preview/cloud-sync.js": "9bebb8b5e11eb0148b562eb0353ea599110fd9104a075fcbffe3467e343078c3",
+  "desktop/src/main/api-client.cjs": "af2f7e09eef63bc2f8e20ff0cde1157f0db0edf72a71510f23a7b6ba3bda322c",
+  "desktop/src/main/update-service.cjs": "369931ab2a11768b5a47f38a27e68abbcf025885da685112c1c10d1b09f7941f",
+  "desktop/src/main/update-policy.cjs": "8a518a8d5bee6ffda9e36031c222543b96fadbe497e39dd9699a1eaf581f9b45",
+  "android/app/src/main/java/cn/shanchuanji/study/UpdateManager.java": "18d8392a01aec4ab34e23cba911b3884bda9482e1498853b3d7b97f164039502"
+}

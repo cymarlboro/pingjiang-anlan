@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "state": {
+    "schemaVersion": 2,
+    "settings": {
+      "dailyTarget": 10,
+      "accountName": "跨端测试",
+      "reminder": {
+        "enabled": false,
+        "time": "20:30"
+      }
+    },
+    "referenceIds": [],
+    "selectedIds": [
+      1922893198738413
+    ],
+    "answerEdits": {
+      "1922893198738413": {
+        "text": "跨端编辑的答案。",
+        "updatedAt": "2026-10-21T10:30:00.000Z",
+        "updatedDate": "2026-10-21"
+      }
+    },
+    "session": null,
+    "history": [
+      {
+        "id": 1922893198738413,
+        "date": "2026-10-21",
+        "at": "2026-10-21T10:30:00.000Z",
+        "rating": "forgot",
+        "chapter": "第4章",
+        "source_id": 2897590815674796
+      }
+    ],
+    "imports": [],
+    "schedule": {},
+    "lastUpdated": "2026-10-21T10:30:00.000Z"
+  },
+  "native": {
+    "customContent": {
+      "schemaVersion": 1,
+      "customQuestions": [
+        {
+          "id": 1922893198738413,
+          "question": "简述地貌的定义及其塑造作用。",
+          "source_id": 2897590815674796,
+          "chapter": "第4章",
+          "options": "",
+          "answer": "",
+          "explanation": "",
+          "locator": "第1段",
+          "metadata": {
+            "importId": 4012572764942634,
+            "userConfirmed": true
+          }
+        }
+      ],
+      "customSources": [
+        {
+          "id": 2897590815674796,
+          "name": "跨端同步测试.txt",
+          "format": "txt",
+          "importId": 4012572764942634
+        }
+      ],
+      "customTypes": {
+        "1922893198738413": "简答题"
+      },
+      "customAnswers": [
+        {
+          "question_id": 1922893198738413,
+          "answer": "地貌是地球表面的形态，受内外营力共同塑造。",
+          "key_points": [],
+          "status": "draft",
+          "references": [],
+          "caveat": "用户确认/编辑的导入草稿，未经学科审定；原文位置：第1段",
+          "sourceQuote": "地貌是地球表面的形态。内外营力共同塑造地貌。",
+          "pageIndex": 0,
+          "locator": "第1段",
+          "sourceName": "跨端同步测试.txt",
+          "type": "简答题",
+          "chapter": "第4章",
+          "userEdited": true,
+          "origin": "import"
+        }
+      ]
+    },
+    "imports": [
+      {
+        "id": 4012572764942634,
+        "name": "跨端同步测试.txt",
+        "format": "txt",
+        "pages": [
+          {
+            "pageIndex": 0,
+            "locator": "第1段",
+            "text": "地貌是地球表面的形态。内外营力共同塑造地貌。"
+          }
+        ],
+        "size": 72,
+        "createdAt": "2026-10-21T13:05:25.272Z",
+        "needsOcr": false,
+        "truncated": false
+      }
+    ]
+  }
+}

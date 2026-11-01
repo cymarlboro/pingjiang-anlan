@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">平江安澜</string>
+    <string name="notification_channel_name">每日复习提醒</string>
+    <string name="notification_channel_description">每天按你设定的本地时间提醒复习；实际送达可能受系统省电策略影响而延迟。</string>
+    <string name="notification_title">平江安澜 · 每日复习</string>
+    <string name="notification_text">今天也来温故知新。</string>
+</resources>
