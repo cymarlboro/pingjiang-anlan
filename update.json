@@ -3,14 +3,14 @@
   "versionName": "1.0.0",
   "apkUrl": "https://github.com/cymarlboro/pingjiang-anlan/releases/download/v1.0.0/pingjianganlan-1.0.0-1.apk",
   "sha256": "0c116f45e01abd6c6c66f1a68e2cd97d07ee7ac30e92d0d214c7df3c6f644b19",
-  "notes": "平江安澜 1.0.0 · 水利工程概论独立双端版\n\n- 独立 GitHub 项目、应用标识、数据目录、签名身份和更新地址；与自然地理学软件可并存。\n- 内置10章116题：86项考纲简答和30道判断纠错，附学习参考答案、来源与待核对标记。\n- 两端 API 资料分析提示词均切换为水利工程概论，保留引用、原文指令隔离、单位辨析和草稿确认。\n- 保留间隔复习算法、题型、设置默认值、连接参数规则、备份及密钥保护机制；更新使用本项目的独立清单。\n- 配套题库源文件、稳定题号登记、版本递增脚本、源码包和 SHA-256 校验清单，支持后续独立更新。\n\n首次安装不覆盖原软件。以后平江安澜更新请覆盖安装，勿先卸载。\n\n答案为课程学习整理稿，待核对处请结合教师口径。云同步部署与实际验收状态见仓库 cloud/deployment-status.md。Windows 安装器未配置商业 Authenticode 证书。Android 尚未完成真实手机全流程验证。\n",
+  "notes": "平江安澜 1.0.0 · 水利工程概论独立双端版\n\n- 独立 GitHub 项目、应用标识、数据目录、签名身份和更新地址；与自然地理学软件可并存。\n- 内置10章116题：86项考纲简答和30道判断纠错，附学习参考答案、来源与待核对标记。\n- 两端 API 资料分析提示词均切换为水利工程概论，保留引用、原文指令隔离、单位辨析和草稿确认。\n- 保留间隔复习算法、题型、设置默认值、连接参数规则、备份及密钥保护机制；更新使用本项目的独立清单。\n- 配套题库源文件、稳定题号登记、版本递增脚本、源码包和 SHA-256 校验清单，支持后续独立更新。\n- 云端独立同步表已部署；账户隔离、CAS冲突、匿名拒绝和密钥过滤的回滚式合成测试通过，原学科数据未改动。\n\n首次安装不覆盖原软件。以后平江安澜更新请覆盖安装，勿先卸载。\n\n答案为课程学习整理稿，待核对处请结合教师口径。云同步部署与实际验收状态见仓库 cloud/deployment-status.md。Windows 安装器未配置商业 Authenticode 证书。Android 尚未完成真实手机全流程验证。\n",
   "windows": {
     "appId": "cn.pingjianganlan.study.desktop",
     "versionCode": 1,
     "versionName": "1.0.0",
     "installerUrl": "https://github.com/cymarlboro/pingjiang-anlan/releases/download/v1.0.0/pingjianganlan-1.0.0-windows-x64-setup.exe",
     "sha256": "edfd3356612e96d3feda6b94d7fd488d059664fe2ec914c46f510ed2cca1e573",
-    "notes": "平江安澜 1.0.0 · 水利工程概论独立双端版\n\n- 独立 GitHub 项目、应用标识、数据目录、签名身份和更新地址；与自然地理学软件可并存。\n- 内置10章116题：86项考纲简答和30道判断纠错，附学习参考答案、来源与待核对标记。\n- 两端 API 资料分析提示词均切换为水利工程概论，保留引用、原文指令隔离、单位辨析和草稿确认。\n- 保留间隔复习算法、题型、设置默认值、连接参数规则、备份及密钥保护机制；更新使用本项目的独立清单。\n- 配套题库源文件、稳定题号登记、版本递增脚本、源码包和 SHA-256 校验清单，支持后续独立更新。\n\n首次安装不覆盖原软件。以后平江安澜更新请覆盖安装，勿先卸载。\n\n答案为课程学习整理稿，待核对处请结合教师口径。云同步部署与实际验收状态见仓库 cloud/deployment-status.md。Windows 安装器未配置商业 Authenticode 证书。Android 尚未完成真实手机全流程验证。\n"
+    "notes": "平江安澜 1.0.0 · 水利工程概论独立双端版\n\n- 独立 GitHub 项目、应用标识、数据目录、签名身份和更新地址；与自然地理学软件可并存。\n- 内置10章116题：86项考纲简答和30道判断纠错，附学习参考答案、来源与待核对标记。\n- 两端 API 资料分析提示词均切换为水利工程概论，保留引用、原文指令隔离、单位辨析和草稿确认。\n- 保留间隔复习算法、题型、设置默认值、连接参数规则、备份及密钥保护机制；更新使用本项目的独立清单。\n- 配套题库源文件、稳定题号登记、版本递增脚本、源码包和 SHA-256 校验清单，支持后续独立更新。\n- 云端独立同步表已部署；账户隔离、CAS冲突、匿名拒绝和密钥过滤的回滚式合成测试通过，原学科数据未改动。\n\n首次安装不覆盖原软件。以后平江安澜更新请覆盖安装，勿先卸载。\n\n答案为课程学习整理稿，待核对处请结合教师口径。云同步部署与实际验收状态见仓库 cloud/deployment-status.md。Windows 安装器未配置商业 Authenticode 证书。Android 尚未完成真实手机全流程验证。\n"
   },
-  "windowsSignature": "S/lcSshP/RjTN7hHi/O6SSjbrkvXU/smz4i2p7YdTyoDePeVFxlFsfYw6lpjpEwL3UlA481qLromzyN8ebYTDA=="
+  "windowsSignature": "8dGvKrhVi+IIUp6f1zwMjk3Tmnx13v7Z8/iTSvPNki8n+a9JLWB4uZUSBf7qpKyA6b3u753mulUWl/qifKs9AQ=="
 }

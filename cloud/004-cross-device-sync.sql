@@ -1,4 +1,4 @@
--- 平江安澜 1.0: independent-app same-account Android/Windows sync. DRAFT, not yet deployed.
+-- 平江安澜 1.0: independent-app same-account Android/Windows sync. Deployed and transactionally verified 2026-11-01.
 -- No secret/service keys. Existing document moderation policies remain intact.
 begin;
 create or replace function private.pja_sync_payload_is_safe(input jsonb)

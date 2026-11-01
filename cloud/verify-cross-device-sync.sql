@@ -1,6 +1,7 @@
 -- Transactional synthetic account isolation and CAS checks. No real login/key.
 -- Every fixture (including temporary admin membership) is rolled back.
 begin;
+select set_config('pja.test.original_count',(select count(*)::text from public.scj_learning_state),true);
 select set_config('scj.test.a',gen_random_uuid()::text,true),
        set_config('scj.test.b',gen_random_uuid()::text,true),
        set_config('scj.test.admin',gen_random_uuid()::text,true);
@@ -72,6 +73,7 @@ begin
  if has_function_privilege('anon','public.pja_sync_commit(bigint,jsonb)','EXECUTE') then raise exception 'anonymous RPC grant'; end if;
  if has_function_privilege('authenticated','private.pja_sync_payload_is_safe(jsonb)','EXECUTE') then raise exception 'helper grant'; end if;
  if not exists(select 1 from pg_class where oid='public.pja_learning_state'::regclass and relrowsecurity) then raise exception 'RLS missing'; end if;
+ if (select count(*) from public.scj_learning_state)<>current_setting('pja.test.original_count')::bigint then raise exception 'original subject changed'; end if;
 end;$test$;
 rollback;
-select 'PASS: owner isolation, CAS, direct-write rejection, credentials, anon, admin; all synthetic fixtures rolled back' as verification;
+select 'PASS: PJA owner isolation, CAS, direct-write rejection, credentials, anon, admin; original subject untouched; all synthetic fixtures rolled back' as verification;

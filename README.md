@@ -20,7 +20,7 @@
 
 Android 应用 ID 为 `cn.pingjianganlan.study`；Windows 应用 ID 为 `cn.pingjianganlan.study.desktop`，本地数据目录为 `%APPDATA%/PingjiangAnlan`。独立更新地址为 `https://raw.githubusercontent.com/cymarlboro/pingjiang-anlan/main/update.json`。
 
-云端账号实现沿用原技术方案，水利资料的同步端点独立为 `pja_learning_state` / `pja_sync_commit`。云端部署和验收状态以 `cloud/deployment-status.md` 为准，部署完成前不会回退访问旧应用的同步表。用户 API Key 和登录令牌不参与资料同步。
+云端账号实现沿用原技术方案，水利资料的同步端点独立为 `pja_learning_state` / `pja_sync_commit`。独立表已部署并通过回滚式合成权限和冲突测试；两个真实设备联机验收尚未进行。详细证据见 `cloud/deployment-status.md`。用户 API Key 和登录令牌不参与资料同步。
 
 ## 持续更新
 
